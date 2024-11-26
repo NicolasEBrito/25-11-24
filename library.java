@@ -1,5 +1,7 @@
 package biblioteca;
 
+import java.util.Arrays;
+
 public class library {
     static int contador = 0;
     libro[] biblio = new libro[3];
@@ -53,5 +55,23 @@ public class library {
     public void agregarLibros(libro x) {
         biblio[contador] = x;
         contador++;
+    }
+
+    public void prestar(libro x, persona y) {
+        if (x.isPrestado() == false) {
+            x.setPrestado(true);
+            y.prestados = Arrays.copyOf(y.prestados, (y.prestados.length + 1));
+            y.prestados[y.prestados.length - 1] = x;
+        } else {
+            System.out.println("El libro ya está prestado");
+        }
+    }
+
+    public void devolver(libro x) {
+        if (x.isPrestado() == true) {
+            x.setPrestado(false);
+        } else {
+            System.out.println("El libro ya estaba en la biblioteca");
+        }
     }
 }

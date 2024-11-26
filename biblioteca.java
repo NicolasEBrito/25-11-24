@@ -10,18 +10,22 @@ public class biblioteca {
         String author = "";
         String name = "";
         int pages = 0;
-        // libro Libro1 = new libro("libro1", "autor1", 120);
-        // libro Libro2 = new libro("libro2", "autor2", 180);
-        // libro Libro3 = new libro("libro3", "autor3", 150);
-        // catalogo.agregarLibros(Libro1);
-        // catalogo.agregarLibros(Libro2);
-        // catalogo.agregarLibros(Libro3);
-        // System.out.println(catalogo.getBiblio()[0].getTitulo());
+
+        persona testPersona = new persona("Nico", "Brito", new libro[1]);
+        libro Libro1 = new libro("libro1", "autor1", 120);
+        libro Libro2 = new libro("libro2", "autor2", 180);
+        libro Libro3 = new libro("libro3", "autor3", 150);
+        catalogo.agregarLibros(Libro1);
+        catalogo.agregarLibros(Libro2);
+        catalogo.agregarLibros(Libro3);
+        System.out.println(catalogo.getBiblio()[0].getTitulo());
         do {
             System.out.println("\nMenu");
             System.out.println("1. Agregar Libro");
             System.out.println("2. Mostrar detalles de libros");
-            System.out.println("3. Salir");
+            System.out.println("3. Pedir un libro");
+            System.out.println("4. Devolver un libro");
+            System.out.println("5. Salir");
             System.out.print("Ingrese su opcion: ");
             opcion = scan.nextInt();
             scan.nextLine();
@@ -42,14 +46,28 @@ public class biblioteca {
                         System.out.println(catalogo.biblio[i].getNroDePaginas());
                     }
                 }
-                case 3 ->
+                case 3 -> {
+                    System.out.println("Seleccione la posicion del libro");
+                    for (int i = 0; i < library.getContador(); i++) {
+                        System.out.println(catalogo.biblio[i].getTitulo());
+                        System.out.println(catalogo.biblio[i].getAutor());
+                        System.out.println(catalogo.biblio[i].getNroDePaginas());
+                    }
+                    int posicion = scan.nextInt();
+                    catalogo.prestar(catalogo.biblio[posicion - 1], testPersona);
+                    System.out.println(catalogo.biblio[posicion - 1].isPrestado());
+                }
+                case 4 -> {
+
+                }
+                case 5 ->
                     System.out.println("Saliendo del menú");
 
                 default -> {
                     System.out.println("Opcion invalida, ingrese nuevamente");
                 }
             }
-        } while (opcion != 3);
+        } while (opcion != 5);
         scan.close();
     }
 };

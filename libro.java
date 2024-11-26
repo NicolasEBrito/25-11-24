@@ -3,6 +3,7 @@ package biblioteca;
 public class libro extends itemBiblioteca {
     String titulo = "";
     String autor = "";
+    boolean prestado = false;
     int nroDePaginas = 0;
 
     public libro(String titulo, String autor, int nroDePaginas) {
@@ -65,6 +66,14 @@ public class libro extends itemBiblioteca {
     public double calcularMulta() {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    public boolean isPrestado() {
+        return prestado;
+    }
+
+    public void setPrestado(boolean prestado) {
+        this.prestado = prestado;
     }
 
 }
